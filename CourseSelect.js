@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         选课
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  体育自动选课
 // @author       Rigel
 // @match        http://211.83.159.5:81/selectCourse
@@ -11,7 +11,15 @@
 
 (function() {
     'use strict';
-    setTimeout(work,1000);
+    var _alert=window.alert;
+    window.alert=function(){
+        return true;
+    }
+    var _comfirm=window.comfirm;
+    window.comfirm=function(){
+        return true;
+    }
+    setTimeout(work,500);
     function work()
     {
         var y = document.querySelectorAll("div.courseClassCell > div.cell > button");
@@ -21,8 +29,8 @@
             location.reload();
             return;
         }
-        y[5].click();
-        alert('click suceess');
+        y[11].click();
+        console.log('click suceess');
     }
 
 })();
